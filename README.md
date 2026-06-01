@@ -101,10 +101,7 @@ All notebooks run on Google Colab with a GPU runtime (T4 or A100). Average train
 
 ---
 
-## Supervisor
-
-[Nom du directeur de PFE]  
-[Établissement]
+Université Mohamed premier, Oujda
 
 ---
 
