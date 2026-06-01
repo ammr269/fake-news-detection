@@ -27,14 +27,14 @@ The dataset file `fakenewsnet_gossipcop_balanced.csv` is included in the reposit
 
 The system is structured as three sequential modules that can be used independently or fused:
 
-**Module 1 — Textual analysis**  
+**Module 1 - Textual analysis**  
 Baseline: TF-IDF + SVM (two versions: title only, title + text)  
 Deep model: BERT (bert-base-uncased), fine-tuned on the classification task
 
-**Module 2 — Source credibility scoring**  
+**Module 2 - Source credibility scoring**  
 Each article is scored along five dimensions: MBFC credibility score for the source domain, uppercase ratio in the title, exclamation/question mark density, sensational word count, and external link count. The resulting vector is concatenated to the BERT [CLS] representation before classification.
 
-**Module 3 — Knowledge graph embeddings**  
+**Module 3 - Knowledge graph embeddings**  
 Named entities are extracted with spaCy (PERSON, ORG, GPE, LOC, EVENT). A co-occurrence graph is built from the corpus itself, with two relation types: `co_occurs_with` (two entities appearing in the same article) and `has_type` (entity to semantic category). TransE is trained on this graph via PyKEEN (64 dimensions, 50 epochs). The resulting entity embeddings are averaged per article and concatenated to the BERT and source vectors in the final trimodal model.
 
 Note on Wikidata: the Wikidata API returned HTTP 403 from the Colab training environment. The intra-corpus graph is the adopted solution. It produces structurally valid embeddings specific to the GossipCop domain.
